@@ -203,178 +203,50 @@ int main(int argc, char **argv) {
     }
     consoleInit(GFX_TOP, &topScreen);
 	consoleInit(GFX_BOTTOM, &bottomScreen);
-	
-    if(choice == 1) goto saveskip2;
-    if(choice == 2) goto saveskip3;
-    if(choice == 3) goto saveskip4;
-    if(choice == 4) goto saveskip5;
-    
-    saveskip2:
-    	
-	choice = 1;
-	
 	consoleSelect(&topScreen);
-    printf("test2");
     
-    savefile = 2;
-    
-    consoleSelect(&bottomScreen);
-	while(aptMainLoop()) {
-        gspWaitForVBlank();
-        hidScanInput();
-        
-        if(hidKeysDown() & KEY_START) {
-        	file = fopen("save.txt", "w");
-        	fprintf(file, "%d", savefile);
-        	fclose(file);
-        	gfxExit();
-    		return 0;
-		}
-		
-        else if(hidKeysDown() & KEY_DOWN) {
-			if (choice < 4) 
-				++choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-		
-		else if(hidKeysDown() & KEY_UP) {
-			if (choice > 1) 
-				--choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-        
-        else if(hidKeysDown() & KEY_A) {
-			break;
-		}
-        
-        gfxFlushBuffers();
-        gfxSwapBuffers();
-    }
-    consoleInit(GFX_TOP, &topScreen);
-	consoleInit(GFX_BOTTOM, &bottomScreen);
-    
-    saveskip3:
+	if(choice == 1){
+		saveskip2:
+	    printf("\x1b[2;2HYou used up all your \x1b[33mmoney\x1b[0m but you run into a");
+	    printf("\x1b[4;2Hthief unfortunately. He is holding a \x1b[35mknife\x1b[0m and");
+	    printf("\x1b[6;2Hhe \x1b[31mthreatens\x1b[0m you to give him your money. As you");
+	    printf("\x1b[8;2Hdon't have a single cent the theif \x1b[36mkills you");
+	    printf("\x1b[10;2Hwithout mercy\x1b[0m.");
+	    savefile = 2;
+	}
+    else if(choice == 2){
+    	saveskip3:
+	    printf("\x1b[2;2HYou decided to pick up \x1b[33mflowers\x1b[0m to present them");
+	    printf("\x1b[4;2Hto the princess. However, as you are checking");
+	    printf("\x1b[6;2Hout the flowers, you find a \x1b[36mPiranha Plant\x1b[0m that");
+	    printf("\x1b[8;2H\x1b[32mbites off your head\x1b[0m and chew it like a piece of");
+	    printf("\x1b[10;2Hgum. It is unfortunate that \x1b[36myou cannot survive\x1b[0m.");
+	    savefile = 3;
+ 	}
+	else if(choice == 3){
+		saveskip4:
+	    printf("\x1b[2;2HAs you are plumbing Her Royal Highness' \x1b[33mshiny\x1b[0m");
+	    printf("\x1b[4;2Htoilet, you accidentally \x1b[32mfall\x1b[0m into the toilet");
+	    printf("\x1b[6;2Hbowl. For some unexplainable reason there is");
+	    printf("\x1b[8;2H\x1b[36mpoisonous mercury\x1b[0m (Hg) and you suffer from the");
+	    printf("\x1b[10;2Hpoison. It has been a very unlucky day.");
+	    savefile = 4;
+	}
+    else if(choice == 4){
+    	saveskip5:
+	    printf("\x1b[2;2HWhy would you want to do that?");
+	    printf("\x1b[4;2HNevertheless, you visit the Princess w/ \x1b[36mnothing\x1b[0m");
+	    printf("\x1b[6;2Hin hand. It is discovered that you don't respect");
+	    printf("\x1b[8;2Hthe Princess. The soldiers in the castle then");
+	    printf("\x1b[10;2H\x1b[32mpush you out of the castle\x1b[0m but you lose your");
+	    printf("\x1b[12;2Hbalance and fall to your \x1b[33mdoom\x1b[0m.");
+	    savefile = 5;
+	}
 	
-	choice = 1;
-	
-	consoleSelect(&topScreen);
-    printf("test3");
-    
-    savefile = 3;
-    
-    consoleSelect(&bottomScreen);
-	while(aptMainLoop()) {
-        gspWaitForVBlank();
-        hidScanInput();
-        
-        if(hidKeysDown() & KEY_START) {
-        	file = fopen("save.txt", "w");
-        	fprintf(file, "%d", savefile);
-        	fclose(file);
-        	gfxExit();
-    		return 0;
-		}
-		
-        else if(hidKeysDown() & KEY_DOWN) {
-			if (choice < 4) 
-				++choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-		
-		else if(hidKeysDown() & KEY_UP) {
-			if (choice > 1) 
-				--choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-        
-        else if(hidKeysDown() & KEY_A) {
-			break;
-		}
-        
-        gfxFlushBuffers();
-        gfxSwapBuffers();
-    }
-    consoleInit(GFX_TOP, &topScreen);
-	consoleInit(GFX_BOTTOM, &bottomScreen);
-    
-    saveskip4:
-	
-	choice = 1;
-	
-	consoleSelect(&topScreen);
-    printf("test4");
-    
-    savefile = 4;
-    
-    consoleSelect(&bottomScreen);
-	while(aptMainLoop()) {
-        gspWaitForVBlank();
-        hidScanInput();
-        
-        if(hidKeysDown() & KEY_START) {
-        	file = fopen("save.txt", "w");
-        	fprintf(file, "%d", savefile);
-        	fclose(file);
-        	gfxExit();
-    		return 0;
-		}
-		
-        else if(hidKeysDown() & KEY_DOWN) {
-			if (choice < 4) 
-				++choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-		
-		else if(hidKeysDown() & KEY_UP) {
-			if (choice > 1) 
-				--choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-        
-        else if(hidKeysDown() & KEY_A) {
-			break;
-		}
-        
-        gfxFlushBuffers();
-        gfxSwapBuffers();
-    }
-    consoleInit(GFX_TOP, &topScreen);
-	consoleInit(GFX_BOTTOM, &bottomScreen);
-
-	saveskip5:
-	
-	choice = 1;
-	
-	consoleSelect(&topScreen);
-    printf("test5");
-    
-    savefile = 5;
-    
+	printf("\x1b[20;9HYou died. You have lost the game.");
 	consoleSelect(&bottomScreen);
+	printf("\x1b[15;12HPress \x1b[36mSTART\x1b[0m to exit.\n");
+	
 	while(aptMainLoop()) {
         gspWaitForVBlank();
         hidScanInput();
@@ -386,34 +258,8 @@ int main(int argc, char **argv) {
         	gfxExit();
     		return 0;
 		}
-		
-        else if(hidKeysDown() & KEY_DOWN) {
-			if (choice < 4) 
-				++choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-		
-		else if(hidKeysDown() & KEY_UP) {
-			if (choice > 1) 
-				--choice;
-			printf("\x1b[10;2H ");
-			printf("\x1b[15;2H ");
-			printf("\x1b[20;2H ");
-			printf("\x1b[25;2H ");
-			printf("\x1b[%d;2H>", 5*choice+5);
-		}
-        
-        else if(hidKeysDown() & KEY_A) {
-			break;
-		}
         
         gfxFlushBuffers();
         gfxSwapBuffers();
     }
-    consoleInit(GFX_TOP, &topScreen);
-	consoleInit(GFX_BOTTOM, &bottomScreen);
 }
