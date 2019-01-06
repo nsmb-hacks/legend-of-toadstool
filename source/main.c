@@ -87,6 +87,7 @@ int main(int argc, char **argv) {
         		if(savefile == 3) goto saveskip3;
         		if(savefile == 4) goto saveskip4;
         		if(savefile == 5) goto saveskip5;
+        		if(savefile == 6) goto saveskip6;
 			}
 			
 			else if(hidKeysDown() & KEY_B) {
@@ -194,6 +195,31 @@ int main(int argc, char **argv) {
 			printf("\x1b[%d;2H>", 5*choice+5);
 		}
         
+        else if(hidKeysDown() & KEY_ZR){
+        	savefile = 6;
+        	saveskip6:
+        	consoleInit(GFX_TOP, &topScreen);
+			consoleInit(GFX_BOTTOM, &bottomScreen);
+			consoleSelect(&topScreen);
+			printf("\x1b[15;22H\x1b[33mVictory!\x1b[0m");
+        	
+        	while(aptMainLoop()) {
+		        gspWaitForVBlank();
+		        hidScanInput();
+		        
+		        if(hidKeysDown() & KEY_START) {
+		        	file = fopen("save.txt", "w");
+		        	fprintf(file, "%d", savefile);
+		        	fclose(file);
+		        	gfxExit();
+		    		return 0;
+				}
+		        
+		        gfxFlushBuffers();
+		        gfxSwapBuffers();
+		    }
+		}
+        
         else if(hidKeysDown() & KEY_A) {
 			break;
 		}
@@ -201,12 +227,12 @@ int main(int argc, char **argv) {
         gfxFlushBuffers();
         gfxSwapBuffers();
     }
-    consoleInit(GFX_TOP, &topScreen);
-	consoleInit(GFX_BOTTOM, &bottomScreen);
-	consoleSelect(&topScreen);
     
 	if(choice == 1){
 		saveskip2:
+		consoleInit(GFX_TOP, &topScreen);
+		consoleInit(GFX_BOTTOM, &bottomScreen);
+		consoleSelect(&topScreen);
 	    printf("\x1b[2;2HYou used up all your \x1b[33mmoney\x1b[0m but you run into a");
 	    printf("\x1b[4;2Hthief unfortunately. He is holding a \x1b[35mknife\x1b[0m and");
 	    printf("\x1b[6;2Hhe \x1b[31mthreatens\x1b[0m you to give him your money. As you");
@@ -216,6 +242,9 @@ int main(int argc, char **argv) {
 	}
     else if(choice == 2){
     	saveskip3:
+    	consoleInit(GFX_TOP, &topScreen);
+		consoleInit(GFX_BOTTOM, &bottomScreen);
+		consoleSelect(&topScreen);
 	    printf("\x1b[2;2HYou decided to pick up \x1b[33mflowers\x1b[0m to present them");
 	    printf("\x1b[4;2Hto the princess. However, as you are checking");
 	    printf("\x1b[6;2Hout the flowers, you find a \x1b[36mPiranha Plant\x1b[0m that");
@@ -225,6 +254,9 @@ int main(int argc, char **argv) {
  	}
 	else if(choice == 3){
 		saveskip4:
+		consoleInit(GFX_TOP, &topScreen);
+		consoleInit(GFX_BOTTOM, &bottomScreen);
+		consoleSelect(&topScreen);
 	    printf("\x1b[2;2HAs you are plumbing Her Royal Highness' \x1b[33mshiny\x1b[0m");
 	    printf("\x1b[4;2Htoilet, you accidentally \x1b[32mfall\x1b[0m into the toilet");
 	    printf("\x1b[6;2Hbowl. For some unexplainable reason there is");
@@ -234,6 +266,9 @@ int main(int argc, char **argv) {
 	}
     else if(choice == 4){
     	saveskip5:
+    	consoleInit(GFX_TOP, &topScreen);
+		consoleInit(GFX_BOTTOM, &bottomScreen);
+		consoleSelect(&topScreen);
 	    printf("\x1b[2;2HWhy would you want to do that?");
 	    printf("\x1b[4;2HNevertheless, you visit the Princess w/ \x1b[36mnothing\x1b[0m");
 	    printf("\x1b[6;2Hin hand. It is discovered that you don't respect");
